@@ -13,7 +13,7 @@ function Homesite() {
         <Row>
           <Showcass />
         </Row>
-        <Row className="AA"md="9" style={{width:"95%",height:"40vh",margin:"auto"}}>
+        <Row className="AA"md="9" style={{width:"95%",height:"45vh",margin:"auto"}}>
           {/* <Card> */}
             <Carousel variant="dark" class="carousel-inner">
               <Carousel.Item>

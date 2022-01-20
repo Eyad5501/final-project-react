@@ -18,7 +18,7 @@ function NavbarItem() {
       <Container>
         <Link to="/" className="navbar-brand d-flex align-items-center">
           <img
-            src="https://images.pexels.com/photos/9429448/pexels-photo-9429448.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            src="https://plusworld.ru/wp-content/uploads/2021/03/SQB.jpg"
             width="40"
             height="40"
             className="d-inline-block align-top"
