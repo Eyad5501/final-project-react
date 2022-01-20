@@ -8,14 +8,18 @@ function AllCompanise() {
 
   return (
     <>
+    
       <Row>
-        <h4 className="mt-5 mb-4">All companise</h4>
+        <h4 className="mt-5 mb-4 name " style={{marginLeft:"500px",fontSize:"50px",color:"#6B6763"}}>All companise</h4>
       </Row>
+      
       <Row md={5}>
         {companies.map(company => (
           <CompanyItem company={company} key={company._id} />
         ))}
+        
       </Row>
+      
     </>
   )
 }

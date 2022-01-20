@@ -8,7 +8,7 @@ function OneStar(props) {
   const { addRating } = useContext(SQBContext)
   return starNumber <= fill ? (
     <AiFillStar
-      size="25"
+      size="20"
       onMouseOver={() => setFill(starNumber)}
       onClick={() => {
         if (localStorage.tokenAdmins) addRating(companyid, starNumber)

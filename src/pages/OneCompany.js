@@ -3,10 +3,10 @@ import { Button, Card, Col, Image, Row } from "react-bootstrap"
 import { useParams } from "react-router"
 import { Link } from "react-router-dom"
 import SQBContext from "../utils/SQBContext"
-import { MdFavorite, MdOutlineFavoriteBorder } from "react-icons/md"
 import RatingStars from "../components/RatingStars"
 import AddComment from "../components/AddComment"
-
+import  pexelsphoto from "../image/pexelskaboompics.jpg"
+import video from "../image/production.mp4"
 function OneCompany() {
   const { companyid } = useParams()
   const { companies } = useContext(SQBContext)
@@ -16,9 +16,12 @@ function OneCompany() {
 
   return (
     <>
+     <img className="companyI" src={pexelsphoto} id="pexelskaboompics.jpg"/>
+     <div className="AA" style={{width:"70%"}}>
+     <div className="Ap" style={{marginTop:"20px"}}>
       <Row
         style={{
-          backgroundImage: `linear-gradient(rgba(2,25,160, 0.5), rgba(255,255,255, 0.3)),  url("${company.poster}")`,
+          backgroundImage: `linear-gradient(rgba(2,25,160, 0.5), rgba(255,255,255, 0.3)),  url("${company.photo}")`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
@@ -27,8 +30,8 @@ function OneCompany() {
           color: "white",
         }}
       >
-        <Col md="4">
-          <img variant="top" src={company.photo} width="100%" style={{ borderRadius: "10px", margin: "20px" }} />
+        <Col md="3">
+          <img variant="top" src={company.photo} width="100%" style={{ borderRadius: "90px", margin: "40px" }} />
         </Col>
         <Col md={{ offset: 1 }}>
           <h1>{company.nameCompany}</h1>
@@ -39,9 +42,9 @@ function OneCompany() {
           </div> */}
           <h3>Rating</h3>
           <Row className="d-flex align-items-center">
-            <Col md="2">
+            <Col md="3">
               <span>{company.ratingAverage.toFixed(1)} / 5</span>
-              <span className="ms-2">({company.ratings.length})</span>
+              <span className="ms-1">({company.ratings.length})</span>
             </Col>
 
             <Col>
@@ -50,25 +53,29 @@ function OneCompany() {
           </Row>
         </Col>
       </Row>
+      </div>
+      <div className="AC">
       <Row className="mt-5">
-        <h3>Field</h3>
+        <h3 className="name">Field</h3>
+        
         {company.fields.map(field => (
-          <Col md="2">
-            <Card border="light" style={{ maxWidth: "200px" }}>
-              <Link to={`/field/${field._id}`}>
+          <Col md="6">
+            <Card border="light" style={{ maxWidth: "220px" ,width:"100vh",backgroundColor:"#ACACAC" }}>
+              
                 <Card.Img
                   variant="top"
                   src={field.photo}
                   height="220px"
-                  style={{ borderRadius: "10px", objectFit: "cover" }}
+                  style={{ borderRadius: "30px", objectFit: "cover",width:"25vh" ,marginTop:"40px",margin:"auto" }}
                 />
-              </Link>
+           
               <Card.Body>
-                <Link to={`/field/${field._id}`} className="text-black" style={{ textDecoration: "none" }}>
-                  <Card.Title>{field.typeField}</Card.Title>
-                </Link>
-              
-                <Button variant="success" className="me-2"><Link to={`/${companyid}/order/${field._id}`}> Order</Link> 
+               
+                  <Card.Title className="name" style={{ margin: "auto",marginTop:"5px",marginBottom:"10px"  }}>{field.typeField}</Card.Title>
+                
+             
+                <Button variant="success" className="me-2 text-black" style={{backgroundColor:"#F4F3F0",textDecoration: "none",
+            borderColor: "gray",color:"#797978",padding:"10px", width:"60%",margin: "auto"}}><Link className="text-black" style={{ textDecoration: "none" }} to={`/${companyid}/order/${field._id}`}><h6>Order</h6> </Link> 
                 
                  </Button>
               </Card.Body>
@@ -76,34 +83,40 @@ function OneCompany() {
           </Col>
         ))}
       </Row>
+      </div>
       {localStorage.tokenAdmins ? (
         <>
-          <Row className="mt-5">
-            <h3>Comments</h3>
-
+          <Row className="mt-3"style={{margin:"auto",width:"90%"}}>
+           
+            <div className="Ap" >
+            <h3 style={{marginRight:"580px",marginBottom:"10px"}}className="name">Comments</h3>
             {company.comments.map(comment => (
-              <Card style={{ margin: 20, maxWidth: 1100 }}>
-                <Row>
-                  <Row style={{ display: "flex", alignItems: "center" }}>
-                    <Col md="1">
-                      <Image src={comment.owner.avatar} width="80px" roundedCircle />
+              <Card  style={{ margin:"auto", maxWidth: 1100,width:"80%",backgroundColor:"#ACACAC"}}>
+                <Row style={{ height:"20vh",marginBottom:"150px"}}>
+                  <Row style={{ alignItems: "center" }}>
+                    <Col md="6"  >
+                      <Image className="image rounded-circle" src={comment.owner.avatar} width="80px" roundedCircle />
                     </Col>
-                    <Col>
+                    <Col className="name" style={{marginRight:"100px",width:"20%"}} >
                       {comment.owner.firstName} {comment.owner.lastName}
                     </Col>
                   </Row>
-                  <Row>
-                    <Col md={{ offset: 1 }}>{comment.comment}</Col>
+                  <Row  >
+                    <Col  style={{ maxWidth: 1100,width:"70%",backgroundColor:"#EBEBEB",borderRadius:"6px",padding:"5px",marginRight:"40px",marginBottom:"20px"}} md={{ offset: 5}}><h6>{comment.comment}</h6></Col>
                   </Row>
                 </Row>
               </Card>
             ))}
+             </div>
           </Row>
+          
           <Row>
             <AddComment companyid={company._id} />
           </Row>
+          
         </>
       ) : null}
+      </div>
     </>
   )
 }

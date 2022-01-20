@@ -6,17 +6,18 @@ import { Route, Routes, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import SQBContext from "./utils/SQBContext"
-import Signup from "./pages/SignUp"
+
 import LoginUser from "./pages/LoginUser"
-import LoginCompany from "./pages/LoginCompany"
-import LoginEmployee from "./pages/LoginEmployee"
+
 import { toast, ToastContainer } from "react-toastify"
 import ProfileUser from "./pages/ProfileUser"
 import AllCompanise from "./pages/AllCompanise"
 import OneCompany from "./pages/OneCompany"
 import AllFields from "./pages/AllFields"
-import OneField from "./pages/Homesite"
+
 import Orders from "./pages/Order"
+import Footer from"./components/Footer"
+
 function App() {
   const [profile, setProfile] = useState(null)
   const [companies, setcompanies] = useState([])
@@ -97,50 +98,7 @@ function App() {
       else console.log(error)
     }
   }
-  // const loginCompany = async e => {
-  //   e.preventDefault()
-  //   try {
-  //     const form = e.target
-  //     const userBody = {
-  //       email: form.elements.email.value,
-  //       password: form.elements.password.value,
-  //     }
-
-  //     const response = await axios.post("http://localhost:5000/api/company/login", userBody)
-
-  //     const token = response.data
-  //     localStorage.tokenOrders = token
-  //     getProfile()
-  //     console.log("login success")
-  //     navigate("/")
-  //   } catch (error) {
-  //     if (error.response) toast.error(error.response.data)
-  //     else console.log(error)
-  //   }
-  // }
-  // const loginEmployee = async e => {
-  //   e.preventDefault()
-  //   try {
-  //     const form = e.target
-  //     const userBody = {
-  //       email: form.elements.email.value,
-  //       password: form.elements.password.value,
-  //     }
-
-  //     const response = await axios.post("http://localhost:5000/api/auth/login", userBody)
-
-  //     const token = response.data
-  //     localStorage.tokenOrders = token
-
-  //     getProfile()
-  //     console.log("login success")
-
-  //     navigate("/")
-  //   } catch (error) {
-  //     if (error.response) toast.error(error.response.data)
-  //     else console.log(error)
-  //   }
-  // }
+  
   const addRating = async (companyid, rating) => {
     try {
       const ratingBody = {
@@ -206,7 +164,7 @@ function App() {
     }
   }
   const logout = () => {
-    localStorage.removeItem("tokenUsers")
+    localStorage.removeItem("tokenAdmins")
     console.log("logout success")
   }
 
@@ -226,23 +184,28 @@ function App() {
   }
   return (
     <SQBContext.Provider value={store}>
+      <div className="mainpage">
+
       <ToastContainer />
       <Navbar />
+     
       <Routes>
-        <Route path="/" element={localStorage.tokenUsers?<Home />: <h3><Homesite/></h3>} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={localStorage.tokenAdmins?<Home />: <Homesite/>} />
+      
         <Route path="/profile" element={<ProfileUser />} />
         <Route path="/loginUser" element={<LoginUser />} />
-        <Route path="/loginCompany" element={<LoginCompany />} />
-        <Route path="/loginEmployee" element={<LoginEmployee />} />
+      
         <Route path="/companise" element={<AllCompanise />} />
         <Route path="/company/:companyid" element={<OneCompany />} />
         <Route path="/fields" element={<AllFields />} />
-    
         {/* <Route path="/loginEmployee" element={<LoginEmployee />} /> */}
         <Route path="/:companyid/order/:fieldid" element={<Orders />} />
-      </Routes>
+       </Routes>
+      </div>
+        <Footer/> 
+    
     </SQBContext.Provider>
+    
   )
 }
 

@@ -1,6 +1,8 @@
-import { Container, Row } from "react-bootstrap"
+import { Col, Container, Row } from "react-bootstrap"
 import CompanyList from "../components/CompanyList"
-import Showcass from "../components/Showcass"
+
+
+
 
 
 function Home() {
@@ -8,10 +10,11 @@ function Home() {
     <>
     
       <Container>
-        
+     
         <Row>
-          <CompanyList listTitle="What's Popular" />
+         
           <CompanyList listTitle="Company"/>
+          
         </Row>
       </Container>
     </>

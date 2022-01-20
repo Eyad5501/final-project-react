@@ -1,3 +1,29 @@
 * {
   font-family: Roboto, sans-serif !important;
 }
+ html,
+body{
+  height: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+.mainpage{
+
+  min-height: 105vh;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 100px;
+ 
+}
+
+.carousel-control-next-icon {
+ 
+  background-color:rgb(168, 168, 162);
+}
+
+.carousel-control-prev-icon {
+ 
+  background-color:rgb(168, 168, 162);
+}
+
